@@ -21,7 +21,9 @@ USE `books`;
 
 -- Дамп структуры для таблица books.books
 CREATE TABLE IF NOT EXISTS `books` (
-  `name` varchar(128) DEFAULT NULL
+  `name` varchar(255) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
