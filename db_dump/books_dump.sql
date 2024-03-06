@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Хост:                         127.0.0.1
--- Версия сервера:               5.1.73-community-log - MySQL Community Server (GPL)
+-- Версия сервера:               8.0.30 - MySQL Community Server - GPL
 -- Операционная система:         Win64
 -- HeidiSQL Версия:              12.1.0.6537
 -- --------------------------------------------------------
@@ -16,15 +16,28 @@
 
 
 -- Дамп структуры базы данных books
-CREATE DATABASE IF NOT EXISTS `books` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE IF NOT EXISTS `books` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `books`;
+
+-- Дамп структуры для таблица books.authors
+CREATE TABLE IF NOT EXISTS `authors` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `author_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+
+-- Экспортируемые данные не выделены.
 
 -- Дамп структуры для таблица books.books
 CREATE TABLE IF NOT EXISTS `books` (
-  `name` varchar(255) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `author_id` int NOT NULL,
+  `price` decimal(11,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `book_author` (`author_id`),
+  CONSTRAINT `book_author` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 
 -- Экспортируемые данные не выделены.
 
